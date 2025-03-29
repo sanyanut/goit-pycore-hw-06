@@ -47,6 +47,12 @@ class Record:
                 if phone_item.value == phone:
                     return phone_item.value
 
+    def remove_phone(self, phone):
+        if Phone(phone):
+            for phone_item in self.phones:
+                if phone_item.value == phone:
+                    self.phones.remove(phone_item)
+
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
 
@@ -96,6 +102,10 @@ print(john)  # Виведення: Contact name: John, phones: 1112223333; 55555
 # Пошук конкретного телефону у записі John
 found_phone = john.find_phone("5555555555")
 print(f"{john.name}: {found_phone}")  # Виведення: 5555555555
+
+# additional print check if specific phone is removed
+# john.remove_phone("5555555555")
+# print(john)
 
 # Видалення запису Jane
 book.delete("Jane")
